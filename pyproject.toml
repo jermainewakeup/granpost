@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "granpost"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "openai",
+    "python-dotenv"
+    ]
+authors = [
+    {name = "Jermaine Steele"}
+]
+description = "AI-powered Content Engine"
+readme = "README.md"
+license = "MIT"
+keywords = ["ai", "automation", "openai", "social"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Internet :: WWW/HTTP"
+]
+
+[project.urls]
+Repository = "https://github.com/jermainewakeup/granpost"
+
+[project.scripts]
+granpost = "granpost.cli:main"
