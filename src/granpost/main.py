@@ -4,7 +4,8 @@ client = OpenAI(api_key=load_api_key())
 
 response = client.responses.create(
     model="gpt-5-nano",
-    input="Make a sea shanty"
+    instructions="example",
+    input="example"
 )
 
 print(response.output_text)
