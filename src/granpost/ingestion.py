@@ -35,7 +35,8 @@ def convert_all_csv(in_dir=DATA_IN, out_file=DATA_OUT / "profiles.json"):
     # Write to disk
     out_path.write_text(formatted_json, encoding="utf-8")
 
-    print(formatted_json)
+    print(f"Converted {len(records)} records to {out_path.resolve()}")
+    return out_path
 
 
 def main():
