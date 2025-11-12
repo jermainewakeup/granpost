@@ -1,12 +1,27 @@
 # IDE
 .idea/
 .vscode/
+.DS_Store
 
 # Python
 __pycache__/
 *.pyc
 .env
+.env.*
+*.env
 .venv/
 dist/
 build/
 *.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+
+# Raw input and outputs
+/data/input/*
+!/data/input/README.md
+!/data/input/sample_profile.csv
+
+/data/output/*
+!/data/output/.gitkeep
+!/data/output/sample_output.json
