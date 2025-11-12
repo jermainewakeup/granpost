@@ -8,6 +8,18 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 DATA_IN = REPO_ROOT / "data/input"
 DATA_OUT = REPO_ROOT / "data/output"
 
+# --- Mapping ---
+# Map CSV headers to page_profile schema fields
+COLUMNS_MAPPING = {
+    "Page Handle (e.g. @johndoe)": "page_handle",
+    "Theme (e.g. pets, parenting)": "theme",
+    "Timezone": "timezone",
+    "What should NEVER be posted? (e.g. politics)": "never_post",
+    "Core Goal (e.g. celebrate grandkids, nostalgia, tell jokes)": "core_goal",
+    "Content Focus (e.g. relatable quotes, family life)": "content_focus",
+    "Audience (e.g. pet owners, grandparents, new parents)": "audience",
+}
+
 
 # --- Helpers ---
 def convert_all_csv(in_dir=DATA_IN, out_file=DATA_OUT / "profiles.json"):
@@ -25,6 +37,9 @@ def convert_all_csv(in_dir=DATA_IN, out_file=DATA_OUT / "profiles.json"):
 
     if "Timestamp" in combined.columns:
         combined = combined.drop(columns=["Timestamp"])
+
+    # Rename columns
+    combined = combined.rename(columns=COLUMNS_MAPPING, errors="ignore")
 
     # Make sure the out dir exists
     out_path.parent.mkdir(parents=True, exist_ok=True)
