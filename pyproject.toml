@@ -7,7 +7,7 @@ name = "granpost"
 version = "0.1.0"
 requires-python = ">=3.10"
 dependencies = [
-    "openai",
+    "openai >= 2.7.1",
     "python-dotenv",
     "pandas"
     ]
@@ -30,3 +30,25 @@ Repository = "https://github.com/jermainewakeup/granpost"
 
 [project.scripts]
 granpost = "granpost.cli:main"
+
+# ---- Packaging (src/ layout) ----
+[tool.hatch.build.targets.wheel]
+packages = ["src/granpost"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/granpost", "README.md", "pyproject.toml"]
+
+# ---- Code style / lint ----
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+extend-select = ["I"]  # turn on import-sorting rules
+
+[tool.ruff.lint.isort]
+known-first-party = ["granpost"]

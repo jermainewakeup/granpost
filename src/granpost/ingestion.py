@@ -1,20 +1,21 @@
 import json
 from pathlib import Path
+
 import pandas as pd
 
 # --- Paths ---
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DATA_IN   = REPO_ROOT / "data/input"
+DATA_IN = REPO_ROOT / "data/input"
 DATA_OUT = REPO_ROOT / "data/output"
+
 
 # --- Helpers ---
 def convert_all_csv(in_dir=DATA_IN, out_file=DATA_OUT / "profiles.json"):
-    in_path  = Path(in_dir)
+    in_path = Path(in_dir)
     out_path = Path(out_file)
 
     # Discover CSV and order them
-    files = sorted(
-        p for p in in_path.rglob("*.csv"))
+    files = sorted(p for p in in_path.rglob("*.csv"))
     if not files:
         raise FileNotFoundError(f"No CSV files found in {in_dir.resolve()}")
 
@@ -36,8 +37,10 @@ def convert_all_csv(in_dir=DATA_IN, out_file=DATA_OUT / "profiles.json"):
 
     print(formatted_json)
 
+
 def main():
     convert_all_csv()
+
 
 if __name__ == "__main__":
     main()
