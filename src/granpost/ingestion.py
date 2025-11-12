@@ -3,6 +3,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from granpost.schemas.page_profile import PageProfile
+
 # --- Paths ---
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DATA_IN = REPO_ROOT / "data/input"
@@ -41,11 +43,18 @@ def convert_all_csv(in_dir=DATA_IN, out_file=DATA_OUT / "profiles.json"):
     # Rename columns
     combined = combined.rename(columns=COLUMNS_MAPPING, errors="ignore")
 
-    # Make sure the out dir exists
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-
     records = combined.to_dict(orient="records")
-    formatted_json = json.dumps(records, ensure_ascii=False, indent=2)
+
+    # Validate and format records
+    valid, errors = [], []
+    for idx, row in enumerate(records):
+        try:
+            model = PageProfile(**row)
+            valid.append(model.model_dump())
+        except Exception as e:
+            errors.append({"row": idx, "error": str(e), "data": row})
+
+    formatted_json = json.dumps(valid, ensure_ascii=False, indent=2)
 
     # Write to disk
     out_path.write_text(formatted_json, encoding="utf-8")

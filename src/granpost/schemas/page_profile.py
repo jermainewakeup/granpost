@@ -1,14 +1,14 @@
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, field_validator
 
 
 class PageProfile(BaseModel):
     page_handle: str
     theme: str
     timezone: str
-    never_post: list[str] = Field(default_factory=list)
+    never_post: str
     core_goal: str
     content_focus: str
-    audience: list[str] = Field(default_factory=list)
+    audience: str
     schema_version: str = "1.0"
 
     @field_validator("page_handle")
