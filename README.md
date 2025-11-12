@@ -1,15 +1,26 @@
 ![CI](https://github.com/jermainewakeup/granpost/actions/workflows/ci.yml/badge.svg)
 
-# 🚀  Granpost
- Social Media Content Engine using ChatGPT
+# 🚀 Granpost
+ ##### 🏎️ *Social Media Content Engine using OpenAI API*
 
-## Installation
+## 📦 Installation
 ### Unix/macOS
+Clone repo and install dependencies:
 ```zsh
-python3 -m pip install granpost
-```
+git clone https://github.com/jermainewakeup/granpost.git
+cd granpost
 
-## Usage
+python3 -m venv .venv
+source .venv/bin/activate
+
+pip install -U pip
+pip install -e . #base dependencies
+```
+##### 🧷 Optional: Install pre-commit tools (lint, format, test)
+```zsh
+pip install -e ".[dev]"
+```
+## 💻 Usage
 Run the CLI:
 ```zsh
 granpost
@@ -19,18 +30,21 @@ Example:
 granpost -G captions -T christmas
 ```
 
-## Features
+## 🧩 Features
+- ✍️ **Caption drafts**: multiple variants with on-brand phrasing.
+- 🖼️ **Image ideas**: optional concept/prompt + alt-text suggestions.
+- 📦 **Local outputs**: JSON/CSV files + Markdown preview.
 
-## Built With
+## 🛠️ Built With
 * Python 3.13
 * OpenAI API
 * FastAPI
 * SQLite
 
-## License
+## 📜 License
 MIT License
 See `LICENSE` file for details
 
-## Credits
+## 🌟 Credits
 * My loved ones.
 

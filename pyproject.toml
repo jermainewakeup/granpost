@@ -52,3 +52,11 @@ extend-select = ["I"]  # turn on import-sorting rules
 
 [tool.ruff.lint.isort]
 known-first-party = ["granpost"]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pre-commit",
+  "ruff",
+    "black",
+]
