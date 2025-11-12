@@ -1,4 +1,12 @@
+# IDE
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
 .env
-.env.local
-.venv
-.json
+.venv/
+dist/
+build/
+*.egg-info/
