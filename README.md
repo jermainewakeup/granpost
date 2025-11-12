@@ -1,3 +1,5 @@
+![CI](https://github.com/jermainewakeup/granpost/actions/workflows/ci.yml/badge.svg)
+
 # 🚀  Granpost
  Social Media Content Engine using ChatGPT
 
