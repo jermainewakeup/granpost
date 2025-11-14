@@ -8,21 +8,22 @@ client = OpenAI(api_key=load_api_key())
 
 
 def generate_quote(profile: PageProfile) -> Quote:
-    system_prompt = (
-        "You are GranPost, an assistant that writes short, wholesome, Facebook-ready quotes "
-        "for a small theme page. "
-        "Use the provided page profile to match theme, audience, and core goal. "
-        "Never include anything in the 'never_post' list. "
-        "Return exactly one quote that could be used as a caption text."
-    )
+    system_prompt = """
+        You are GranPost, an assistant that writes short, relatable social media quotes
+        for small themed pages.
+        
+        Follow these global rules:
+        - Always respect 'never_post' topics.
+        - Match the page's audience and core goal from its profile.
+        - Write quotes that feel like a single real person posting.
+        - Avoid generic cliches and overused inspirational phrases.
+        """.strip()
 
     # Load PageProfile JSON
     profile_dict = profile.model_dump()
 
     user_prompt = (
-        "Generate a single quote caption for this page.\n\n"
-        "Page profile JSON:\n"
-        f"{profile_dict}"
+        "Generate a single quote for this page.\n\n" "Page profile JSON:\n" f"{profile_dict}"
     )
 
     response = client.responses.parse(
@@ -34,27 +35,4 @@ def generate_quote(profile: PageProfile) -> Quote:
         text_format=Quote,
     )
 
-    print(response)
     return response.output_parsed
-
-
-def main():
-    ### TEMPORARY HARDCODED PROFILE ###
-    profile = PageProfile(
-        page_handle="@RememberWhen",
-        theme="60s–90s nostalgia and throwbacks",
-        timezone="America/Los_Angeles",
-        never_post="politics, tragic news",
-        core_goal="spark warm memories about childhood and family",
-        content_focus="short nostalgic reflections and everyday moments",
-        audience="adults 35+ who grew up in the 60s–90s",
-    )
-    ### TEMPORARY HARDCODED PROFILE ###
-    quote = generate_quote(profile)
-    print(quote.text)
-    print(quote.hashtags)
-    print(quote.alt_text)
-
-
-if __name__ == "__main__":
-    main()
