@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 
 
 class Quote(BaseModel):
-    text: str = Field(..., description="The full quote text, ready to paste as a Facebook caption.")
+    text: str = Field(..., description="The full quote text, ready to paste as a Facebook quote.")
 
     hashtags: list[str] = Field(
         default_factory=list, description="0–5 relevant hashtags, without the leading # character."
