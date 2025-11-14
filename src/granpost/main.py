@@ -1,21 +1,13 @@
-from config import load_api_key
-from openai import OpenAI
+from pathlib import Path
 
-client = OpenAI(api_key=load_api_key())
-
-
-# Content Generation
-def generate():
-    response = client.responses.create(model="gpt-5-nano", instructions="example", input="example")
-    return response.output_text
+# --- Paths ---
+REPO_ROOT = Path(__file__).resolve().parents[2]
+DATA_OUT = REPO_ROOT / "data" / "output"
+PROFILES_FILE = DATA_OUT / "profiles.json"
 
 
-def print_response():
-    print(generate())
-
-
-def main():
-    print_response()
+def main() -> None:
+    print("test")
 
 
 if __name__ == "__main__":
