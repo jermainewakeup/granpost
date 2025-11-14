@@ -21,14 +21,13 @@ pip install -e . #base dependencies
 pip install -e ".[dev]"
 ```
 ## 💻 Usage
-Run the CLI:
+### Importing CSV Files
 ```zsh
-granpost
+mv example.csv /data/input/
 ```
-Example:
-```zsh
-granpost -G captions -T christmas
-```
+
+### Generating Content
+Run `main.py`
 
 ## 🧩 Features
 - ✍️ **Caption drafts**: multiple variants with on-brand phrasing.
@@ -38,8 +37,7 @@ granpost -G captions -T christmas
 ## 🛠️ Built With
 * Python 3.13
 * OpenAI API
-* FastAPI
-* SQLite
+* Pydantic
 
 ## 📜 License
 MIT License
