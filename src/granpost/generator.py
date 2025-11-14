@@ -16,6 +16,7 @@ def generate_quote(profile: PageProfile) -> Quote:
         "Return exactly one quote that could be used as a caption text."
     )
 
+    # Load PageProfile JSON
     profile_dict = profile.model_dump()
 
     user_prompt = (
@@ -38,6 +39,7 @@ def generate_quote(profile: PageProfile) -> Quote:
 
 
 def main():
+    ### TEMPORARY HARDCODED PROFILE ###
     profile = PageProfile(
         page_handle="@RememberWhen",
         theme="60s–90s nostalgia and throwbacks",
@@ -47,6 +49,7 @@ def main():
         content_focus="short nostalgic reflections and everyday moments",
         audience="adults 35+ who grew up in the 60s–90s",
     )
+    ### TEMPORARY HARDCODED PROFILE ###
     quote = generate_quote(profile)
     print(quote.text)
     print(quote.hashtags)
