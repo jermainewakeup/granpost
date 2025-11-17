@@ -35,6 +35,19 @@ def choose_profile(profiles: list[PageProfile]) -> PageProfile:
         print("Invalid choice. Please try again.")
 
 
+def handle_generate(profile: PageProfile) -> None:
+    print("\nGenerating quote...\n")
+    try:
+        quote = generate_quote(profile)
+    except Exception as e:
+        print(f"Error: {e}")
+        return
+
+    print(f"Quote: {quote.text}")
+    print(f"Hashtags: {', '.join('#' + tag for tag in quote.hashtags)}")
+    print(f"Alt-text: {quote.alt_text}\n")
+
+
 def main() -> None:
     profiles = load_profiles(PROFILES_FILE)
     if not profiles:
@@ -52,26 +65,18 @@ def main() -> None:
         )
 
         if (choice := input("Enter an action: ")) == "1":
-            print("\nGenerating quote...\n")
-            try:
-                quote = generate_quote(profile)
-            except Exception as e:
-                print(f"Error: {e}")
-                continue
+            handle_generate(profile)
 
-            print(f"Quote: {quote.text}")
-            print(f"Hashtags: {', '.join('#' + tag for tag in quote.hashtags)}")
-            print(f"Alt-text: {quote.alt_text}\n")
-
-        if choice == "2":
+        elif choice == "2":
             profile = choose_profile(profiles)
             continue
 
-        if choice == "3":
+        elif choice == "3":
             print("\nExiting.")
             return
 
-        print("\nInvalid choice. Please try again.")
+        else:
+            print("\nInvalid choice. Please try again.")
 
 
 if __name__ == "__main__":
