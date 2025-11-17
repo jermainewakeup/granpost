@@ -31,8 +31,8 @@ def choose_profile(profiles: list[PageProfile]) -> PageProfile:
 
         if 0 < choice <= len(profiles):
             return profiles[choice - 1]
-        else:
-            print("Invalid choice. Please try again.")
+
+        print("Invalid choice. Please try again.")
 
 
 def main() -> None:
@@ -63,16 +63,15 @@ def main() -> None:
             print(f"Hashtags: {', '.join('#' + tag for tag in quote.hashtags)}")
             print(f"Alt-text: {quote.alt_text}\n")
 
-        elif choice == "2":
+        if choice == "2":
             profile = choose_profile(profiles)
             continue
 
-        elif choice == "3":
+        if choice == "3":
             print("\nExiting.")
             return
 
-        else:
-            print("\nInvalid choice. Please try again.")
+        print("\nInvalid choice. Please try again.")
 
 
 if __name__ == "__main__":
